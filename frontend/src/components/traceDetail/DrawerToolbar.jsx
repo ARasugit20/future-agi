@@ -18,8 +18,9 @@ import Iconify from "src/components/iconify";
 import CustomTooltip from "src/components/tooltip/CustomTooltip";
 
 // Shared 24px bordered pill button
-const ToolbarPill = ({ icon, label, onClick, sx }) => (
+const ToolbarPill = React.forwardRef(({ icon, label, onClick, sx }, ref) => (
   <ButtonBase
+    ref={ref}
     onClick={onClick}
     sx={{
       display: "inline-flex",
@@ -47,7 +48,9 @@ const ToolbarPill = ({ icon, label, onClick, sx }) => (
     {icon && <Iconify icon={icon} width={14} />}
     {label && <span>{label}</span>}
   </ButtonBase>
-);
+));
+
+ToolbarPill.displayName = "ToolbarPill";
 
 ToolbarPill.propTypes = {
   icon: PropTypes.string,
@@ -395,7 +398,7 @@ const DrawerToolbar = ({
                 "&:hover": {
                   background:
                     "linear-gradient(135deg, rgba(123,86,219,0.08) 0%, rgba(26,188,254,0.08) 100%)",
-                  color: "#7B56DB",
+                  color: "accent.brand",
                 },
               }}
             >
